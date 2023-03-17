@@ -48,31 +48,31 @@ public class VRController : MonoBehaviour {
             switch (maxIndex) {
                 case 0:
                     rendererComponent.material.color = Color.red; // Right face
-                    Select?.Invoke(GameManagerV2.Instance.Questions[0]);
+                    Select?.Invoke(GameManager.Instance.Questions[0]);
                     break;
                 case 1:
                     rendererComponent.material.color = Color.yellow; // Left face
-                    Select?.Invoke(GameManagerV2.Instance.Questions[1]);
+                    Select?.Invoke(GameManager.Instance.Questions[1]);
                     break;
                 case 2:
                     rendererComponent.material.color = Color.green; // Top face
-                    Select?.Invoke(GameManagerV2.Instance.Questions[2]);
+                    Select?.Invoke(GameManager.Instance.Questions[2]);
                     break;
                 case 3:
                     rendererComponent.material.color = Color.cyan; // Bottom face
-                    Select?.Invoke(GameManagerV2.Instance.Questions[3]);
+                    Select?.Invoke(GameManager.Instance.Questions[3]);
                     break;
                 case 4:
                     rendererComponent.material.color = Color.blue; // Front face
-                    Select?.Invoke(GameManagerV2.Instance.Questions[4]);
+                    Select?.Invoke(GameManager.Instance.Questions[4]);
                     break;
                 case 5:
                     rendererComponent.material.color = Color.magenta; // Back face
-                    Select?.Invoke(GameManagerV2.Instance.Questions[5]);
+                    Select?.Invoke(GameManager.Instance.Questions[5]);
                     break;
             }
             FVController.sb.Length = 0; 
-            FVController.sb.Append(GameManagerV2.Instance.selectedQuestion.GetAnswered());
+            FVController.sb.Append(GameManager.Instance.selectedQuestion.GetAnswered());
         }
         lastIndex = maxIndex;
     }

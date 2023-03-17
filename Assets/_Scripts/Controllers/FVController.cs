@@ -7,9 +7,9 @@ public class FVController : MonoBehaviour {
     [SerializeField] private Color correct;
     [SerializeField] private Color wrong;
     public void Character(string _response) {
-        if(GameManagerV2.Instance.selectedQuestion == null || GameManagerV2.Instance.selectedQuestion.Correct)
+        if(GameManager.Instance.selectedQuestion == null || GameManager.Instance.selectedQuestion.Correct)
             return;
-        GameManagerV2.Instance.selectedQuestion.SetQuestionTextColor(normal);
+        GameManager.Instance.selectedQuestion.SetQuestionTextColor(normal);
         char characterToAdd = ' '; 
         switch (_response) {
             case "0": //0
@@ -26,19 +26,19 @@ public class FVController : MonoBehaviour {
                 }
                 break;
             case "=": // =
-                if(GameManagerV2.Instance.selectedQuestion.CorrectAnswer == sb.ToString()) {
-                    GameManagerV2.Instance.selectedQuestion.SetCorrect(true);
-                    GameManagerV2.Instance.selectedQuestion.SetQuestionTextColor(correct);
-                    GameManagerV2.Instance.correctAnswered++;
-                    if(GameManagerV2.Instance.correctAnswered == 9) {
-                        GameManagerV2.Instance.SetGameState(GameState.won);
+                if(GameManager.Instance.selectedQuestion.CorrectAnswer == sb.ToString()) {
+                    GameManager.Instance.selectedQuestion.SetCorrect(true);
+                    GameManager.Instance.selectedQuestion.SetQuestionTextColor(correct);
+                    GameManager.Instance.correctAnswered++;
+                    if(GameManager.Instance.correctAnswered == 9) {
+                        GameManager.Instance.SetGameState(GameState.won);
                         return;
                     }
                     return;
                 }
                 if(sb.Length > 0 ) {
-                    GameManagerV2.Instance.selectedQuestion.SetQuestionTextColor(wrong);
-                    GameManagerV2.Instance.strikes.SetStrikesAmount(1 + GameManagerV2.Instance.strikes.StrikesAmount);
+                    GameManager.Instance.selectedQuestion.SetQuestionTextColor(wrong);
+                    GameManager.Instance.strikes.SetStrikesAmount(1 + GameManager.Instance.strikes.StrikesAmount);
                 }
                 break;
             case "1": //1
@@ -87,7 +87,7 @@ public class FVController : MonoBehaviour {
         if(sb.Length < 4 && characterToAdd != ' ') 
             sb.Append(characterToAdd);
 
-        GameManagerV2.Instance.selectedQuestion.SetAnswered(sb.ToString());
+        GameManager.Instance.selectedQuestion.SetAnswered(sb.ToString());
     }
         
 }

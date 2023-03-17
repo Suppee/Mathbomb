@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class GameManagerV2 : MonoBehaviour {
-   public static GameManagerV2 Instance = null; 
+public class GameManager : MonoBehaviour {
+   public static GameManager Instance = null; 
    public Question selectedQuestion;
    private const string SERVER_URL = "http://172.20.10.4/";
    private GameObject questionsParent = null; 

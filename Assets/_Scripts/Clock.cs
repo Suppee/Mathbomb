@@ -27,7 +27,7 @@ public class Clock : MonoBehaviour
             else {
                 ClockLenght = 0;
                 ClockActive = false;
-                GameManagerV2.Instance.SetGameState(GameState.lost);
+                GameManager.Instance.SetGameState(GameState.lost);
             }
         }
     }

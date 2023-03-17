@@ -16,7 +16,7 @@ public class Strikes : MonoBehaviour {
             StrikeText.text = "X X";
         } else {
             StrikeText.text = "X X X";
-            GameManagerV2.Instance.SetGameState(GameState.lost);
+            GameManager.Instance.SetGameState(GameState.lost);
         }
     }
     private void Awake() {

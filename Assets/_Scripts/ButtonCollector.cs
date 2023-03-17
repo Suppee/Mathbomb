@@ -3,7 +3,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class ButtonCollector : MonoBehaviour {
-    private const string SERVER_URL = "http://172.20.10.4/";
+    private Quaternion rotation;
+    private const string SERVER_URL = "http://192.168.20.212/";
+    //private const string SERVER_URL = "http://192.168.1.19/";
 
     public IEnumerator CollectButtonValues() {
         while (true) {
@@ -11,9 +13,21 @@ public class ButtonCollector : MonoBehaviour {
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success) {
-                //string response = request.downloadHandler.text;
-                int data = int.Parse(request.downloadHandler.text);
-                //GameManagerV2.Instance.Character(data);
+                string quaternionString = request.downloadHandler.text;
+                string[] quaternionArray = quaternionString.Split(',');
+                try {
+                    float w = float.Parse(quaternionArray[0]);
+                    float x = float.Parse(quaternionArray[1]);
+                    float y = float.Parse(quaternionArray[2]);
+                    float z = float.Parse(quaternionArray[3]);
+                
+                    rotation = new Quaternion(w, x, y, z); // convert from Arduino coordinate system to Unity coordinate system
+                } catch(System.Exception) {
+                    Debug.Log("Fail Reading");
+                }
+
+                // Rotate the object using the quaternion
+                transform.rotation = rotation;
             }
 
             yield return null; // Wait for 1 frame before making another request

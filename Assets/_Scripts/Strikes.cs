@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Strikes : MonoBehaviour
-{
+public class Strikes : MonoBehaviour {
     public TextMesh StrikeText;
     public int StrikesAmount {get; private set;}
     
@@ -23,6 +22,4 @@ public class Strikes : MonoBehaviour
     private void Awake() {
         StrikeText = this.transform.GetChild(2).GetComponentInChildren<TextMesh>();
     }
-
-
 }

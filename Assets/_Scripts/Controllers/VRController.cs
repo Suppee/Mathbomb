@@ -13,6 +13,8 @@ public class VRController : MonoBehaviour {
         SideFacingPlayer();
     }
 
+    public void SetPosition(Vector3 pos) => this.gameObject.transform.position = pos;
+
     private void Start() {
         rendererComponent = GetComponent<Renderer>();
         localDirections = new Vector3[] {

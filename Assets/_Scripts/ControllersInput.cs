@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class ButtonCollector : MonoBehaviour {
+public class ControllersInput : MonoBehaviour {
     private Quaternion rotation;
     private const string SERVER_URL = "http://192.168.20.212/";
     //private const string SERVER_URL = "http://192.168.1.19/";

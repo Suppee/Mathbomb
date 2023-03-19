@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour {
         if(Instance == null) {
             Instance = this;
             DontDestroyOnLoad(this);
-        }    
-        else if(Instance != this) {
+        } else if(Instance != this) {
             Destroy(this);
         }
 
@@ -39,8 +38,7 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < questionsAmount; i++) {
             Questions[i] = questionsParent.transform.GetChild(i).GetComponent<Question>();
             Questions[i].AnswerText = answersParent.transform.GetChild(i).GetComponent<TextMesh>();
-        }
-        foreach (Question que in Questions) {
+        } foreach (Question que in Questions) {
             que.SetAnswered("");
             que.SetCorrect(false);
         }

@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html>
+<head>
+	<title>WEB - Socket.IO, v1</title>
+
+	<!--Get Socket IO from CDN (content delivery network)-->
+	<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+</head>
+<body>
+	<!--Current LED and Potentiometer values, and set new LED value-->
+	<p>
+		Current LED value (<output name="" type="text" id="CurrentLEDValueField" value"readonly"></output>), new LED value:
+		<input id="newLEDValueField" type="text" onchange="UpdateLEDValue(this.value);">
+	</p>
+
+	<p>
+		Current BNO055 value (<output name="" type="text" id="CurrentBNO055ValueField" value"readonly"></output>)
+	</p>
+	<p>
+		Current KeyPad value (<output name="" type="text" id="CurrentKeyPadValueField" value"readonly"></output>)
+	</p>
+</body>
+</html>
+
+<!--Handle IO Socket-->
+<script>
+	//Local variables
+	var socket;
+	var runLocal = true;
+	var currentLEDValue = 0;
+
+	//Connect to server
+	if (runLocal) {
+		socket = io.connect('http://localhost:3000', { transports: ['websocket'] });
+	}
+	else {
+        socket = io.connect('http://34.88.223.86:3000/', { transports: ['websocket'] });
+	}
+
+	//On connected to server
+	socket.on('connect', function (data) {
+		console.log("Connected to server");
+	});
+
+	//On "CurrentLEDValue"
+	socket.on("CurrentLEDValue", function (data) {
+        console.log("Current LED value received from server : " + data);
+		document.getElementById("CurrentLEDValueField").value = data;
+	});
+
+	//On "CurrentBNO055Value"
+    socket.on("CurrentBNO055Value", function (data) {
+        console.log("Current BNO055 value received from server: " + data);
+        document.getElementById("CurrentBNO055ValueField").value = data;
+    });
+
+	//On "CurrentKeyPadValue"
+    socket.on("CurrentKeyPadValue", function (data) {
+        console.log("Current KeyPad value received from server: " + data);
+        document.getElementById("CurrentKeyPadValueField").value = data;
+    });
+
+	//----------------- SOCKET IO - EMIT UPDATES
+    function UpdateLEDValue(newLEDValue) {
+		console.log("New LED value emitted to server: " + newLEDValue);
+        socket.emit("UpdateCurrentLEDValue", newLEDValue);
+	}
+</script>

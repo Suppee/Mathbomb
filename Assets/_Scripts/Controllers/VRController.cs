@@ -8,12 +8,17 @@ public class VRController : MonoBehaviour {
     private Renderer rendererComponent; // The renderer component of this object
     private Vector3[] localDirections; // An array of local directions for each cube face
     private int lastIndex;
+
     public void SetRotation(Quaternion q) {
         this.gameObject.transform.rotation = q;
         SideFacingPlayer();
     }
 
+    public Quaternion GetRotation() => this.gameObject.transform.rotation;
+
     public void SetPosition(Vector3 pos) => this.gameObject.transform.position = pos;
+
+    public Vector3 GetPosition() => this.gameObject.transform.position;
 
     private void Start() {
         rendererComponent = GetComponent<Renderer>();
@@ -73,9 +78,11 @@ public class VRController : MonoBehaviour {
                     Select?.Invoke(GameManager.Instance.Questions[5]);
                     break;
             }
-            FVController.sb.Length = 0; 
-            FVController.sb.Append(GameManager.Instance.selectedQuestion.GetAnswered());
+            //FVController.sb.Length = 0; 
+            //FVController.sb.Append(GameManager.Instance.selectedQuestion.GetAnswered());
         }
         lastIndex = maxIndex;
     }
+
+    
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
    public static GameManager Instance = null; 
-   public Question selectedQuestion;
+   public Question selectedQuestion {get; private set;}
    private const string SERVER_URL = "http://172.20.10.4/";
    private GameObject questionsParent = null; 
    private GameObject answersParent = null; 
@@ -24,17 +24,17 @@ public class GameManager : MonoBehaviour {
             Destroy(this);
         }
 
-        questionsParent = GameObject.Find("Questions");
+       /* questionsParent = GameObject.Find("Questions");
         answersParent = GameObject.Find("Answers");
         wonText = GameObject.Find("Won");
         lostText = GameObject.Find("Lost");
         startText = GameObject.Find("Start");
         
         clock = GameObject.Find("Clock").GetComponent<Clock>();
-        strikes = GameObject.Find("Strikes").GetComponent<Strikes>();
+        strikes = GameObject.Find("Strikes").GetComponent<Strikes>();*/
     }
 
-    private void Start() {
+   /* private void Start() {
         for (int i = 0; i < questionsAmount; i++) {
             Questions[i] = questionsParent.transform.GetChild(i).GetComponent<Question>();
             Questions[i].AnswerText = answersParent.transform.GetChild(i).GetComponent<TextMesh>();
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
         wonText.SetActive(false);
         lostText.SetActive(false);
         SetGameState(GameState.play);
-    }
+    }*/
 
     private void StartGame() {
         questionsParent.SetActive(false);
@@ -98,5 +98,7 @@ public class GameManager : MonoBehaviour {
                 break;
         }
     }
+
+    public void SetSelectedQuestion(Question q) => this.selectedQuestion = q;
 }
 

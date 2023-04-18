@@ -6,8 +6,9 @@ public class FVController : MonoBehaviour {
     [SerializeField] private Color normal;
     [SerializeField] private Color correct;
     [SerializeField] private Color wrong;
-    public void Character(string _response) {
 
+    public void Character(string _response) {
+        Debug.Log(_response);
         if(GameManager.Instance.selectedQuestion == null || GameManager.Instance.selectedQuestion.Correct)
             return;
         GameManager.Instance.selectedQuestion.SetQuestionTextColor(normal);
@@ -90,5 +91,4 @@ public class FVController : MonoBehaviour {
 
         GameManager.Instance.selectedQuestion.SetAnswered(sb.ToString());
     }
-        
 }

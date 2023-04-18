@@ -3,8 +3,10 @@
 
 //char ssid[] = "NETGEAR30";             //  your network SSID (name) between the " "
 //char pass[] = "eleganttrumpet166";      // your network password between the " "
-char ssid[] = "Waoo4920_7388";             //  your network SSID (name) between the " "
-char pass[] = "nnmt8333";      // your network password between the " "
+//char ssid[] = "Waoo4920_7388";             //  your network SSID (name) between the " "
+//char pass[] = "nnmt8333";      // your network password between the " "
+char ssid[] = "Birthe Kristensens iPhone";             //  your network SSID (name) between the " "
+char pass[] = "2206Ark95";      // your network password between the " "
 int keyIndex = 0;                 // your network key Index number (needed only for WEP)
 int status = WL_IDLE_STATUS;      //connection status
 WiFiServer server(80);            //server socket
@@ -78,7 +80,7 @@ void connect_WiFi() {
     status = WiFi.begin(ssid, pass);
 
     // wait 10 seconds for connection:
-    delay(10000);
+    delay(1000);
   }
 }
 
@@ -103,17 +105,25 @@ void printWEB() {
             client.println("Content-type:text/html");
             client.println();
             
-            updateOrientation();
-            float orientation[4];
+            UpdateIMU();
+            uint8_t calibration[4];
+            float orientation[3];
+            getCalibration(calibration);
             getOrientation(orientation);
     
+            client.print(calibration[0]);
+            client.print(", ");
+            client.print(calibration[1]);
+            client.print(", ");
+            client.print(calibration[2]);
+            client.print(", ");
+            client.print(calibration[3]);
+            client.print(";");
             client.print(orientation[0]);
             client.print(", ");
             client.print(orientation[1]);
             client.print(", ");
-            client.print(orientation[2]);
-            client.print(", ");
-            client.println(orientation[3]);
+            client.println(orientation[2]);
    
             // The HTTP response ends with another blank line:
             //client.println();

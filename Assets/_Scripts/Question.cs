@@ -26,7 +26,7 @@ public class Question : MonoBehaviour {
         selected = _selected == this;
         if(selected && !Correct) {
             style = FontStyle.Bold;
-            GameManager.Instance.selectedQuestion = this;
+            GameManager.Instance.SetSelectedQuestion(this);
         } else {
             style = FontStyle.Normal;
         }

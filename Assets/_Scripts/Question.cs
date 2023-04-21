@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
+using TMPro;
 
 public class Question : MonoBehaviour {
     private bool selected;
-    public TextMesh[] QuestionText;
-    public TextMesh AnswerText;
+    public TMP_Text[] QuestionText;
+    public TMP_Text AnswerText;
     private FontStyle style;
     public string CorrectAnswer {get => correctAnswer;}
     [SerializeField] private string correctAnswer;
@@ -19,7 +19,7 @@ public class Question : MonoBehaviour {
     public void SetCorrect(bool _correct) => this.Correct = _correct;
  
     private void Awake() {
-        QuestionText = this.transform.GetComponentsInChildren<TextMesh>();
+        QuestionText = this.transform.GetComponentsInChildren<TMP_Text>();
     }
 
     private void Selected(Question _selected) {
@@ -31,10 +31,10 @@ public class Question : MonoBehaviour {
             style = FontStyle.Normal;
         }
 
-        foreach (TextMesh _tx in QuestionText) {
-            _tx.fontStyle = style;
+        foreach (TMP_Text _tx in QuestionText) {
+            _tx.fontStyle = (FontStyles)style;
         }
-        AnswerText.fontStyle = style;
+        AnswerText.fontStyle = (FontStyles)style;
     }
     private void OnEnable() => VRController.Select += Selected;
     private void OnDisable() => VRController.Select -= Selected;

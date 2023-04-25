@@ -7,7 +7,7 @@ namespace KyleDulce.SocketIo {
     {
 
         //only needed for webgl
-        private static readonly string SOCKET_GAMEOBJECT_NAME = "SocketIo_Ref";
+        //private static readonly string SOCKET_GAMEOBJECT_NAME = "SocketIo_Ref";
 
         private static byte _protocol = 0;
         public static byte protocol {

@@ -9,15 +9,12 @@ public class VRController : MonoBehaviour {
     private Vector3[] localDirections; // An array of local directions for each cube face
     private int lastIndex;
 
-    public void SetRotation(Quaternion q) {
-        this.gameObject.transform.rotation = q;
+    public void SetRotation(Quaternion _q) {
+        this.gameObject.transform.rotation = _q;
         SideFacingPlayer();
     }
-
+    public void SetPosition(Vector3 _pos) => this.gameObject.transform.position = _pos;
     public Quaternion GetRotation() => this.gameObject.transform.rotation;
-
-    public void SetPosition(Vector3 pos) => this.gameObject.transform.position = pos;
-
     public Vector3 GetPosition() => this.gameObject.transform.position;
 
     private void Start() {
@@ -34,10 +31,10 @@ public class VRController : MonoBehaviour {
 
     private void SideFacingPlayer() {
         // Calculate the direction from this object's center to the target object's center
-        Vector3 direction = targetObject.transform.position - transform.position;
+        Vector3 _direction = targetObject.transform.position - transform.position;
 
         // Transform the direction vector into local space
-        Vector3 localDirection = transform.InverseTransformDirection(direction);
+        Vector3 localDirection = transform.InverseTransformDirection(_direction);
 
         // Determine which side of the object is facing the target object
         float maxDot = float.MinValue;
@@ -54,32 +51,32 @@ public class VRController : MonoBehaviour {
             // Sets the selected question accordingly by which side of the cube is facing the target object
             switch (maxIndex) {
                 case 0:
-                    rendererComponent.material.color = Color.red; // Right face
+                    //rendererComponent.material.color = Color.red; // Right face
                     Select?.Invoke(GameManager.Instance.Questions[0]);
                     break;
                 case 1:
-                    rendererComponent.material.color = Color.yellow; // Left face
+                    //rendererComponent.material.color = Color.yellow; // Left face
                     Select?.Invoke(GameManager.Instance.Questions[1]);
                     break;
                 case 2:
-                    rendererComponent.material.color = Color.green; // Top face
+                    //rendererComponent.material.color = Color.green; // Top face
                     Select?.Invoke(GameManager.Instance.Questions[2]);
                     break;
                 case 3:
-                    rendererComponent.material.color = Color.cyan; // Bottom face
+                    //rendererComponent.material.color = Color.cyan; // Bottom face
                     Select?.Invoke(GameManager.Instance.Questions[3]);
                     break;
                 case 4:
-                    rendererComponent.material.color = Color.blue; // Front face
+                    //rendererComponent.material.color = Color.blue; // Front face
                     Select?.Invoke(GameManager.Instance.Questions[4]);
                     break;
                 case 5:
-                    rendererComponent.material.color = Color.magenta; // Back face
+                    //rendererComponent.material.color = Color.magenta; // Back face
                     Select?.Invoke(GameManager.Instance.Questions[5]);
                     break;
             }
-            //FVController.sb.Length = 0; 
-            //FVController.sb.Append(GameManager.Instance.selectedQuestion.GetAnswered());
+            FVController.sb.Length = 0; 
+            FVController.sb.Append(GameManager.Instance.selectedQuestion.AnswerText);
         }
         lastIndex = maxIndex;
     }

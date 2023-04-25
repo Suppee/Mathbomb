@@ -16,7 +16,6 @@ public class DataReceiver : MonoBehaviour {
     //private string currentKeyPadValue = "0";
     private float xAcc, yAcc, zAcc = 0;
     private float w, x, y, z = 0;
-    private int sys, gyro, accel, mag = 0;
 
     private void SetCurrentBNO055Value(string data)
     {

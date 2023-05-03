@@ -54,18 +54,26 @@ public class Question : MonoBehaviour {
                 AddSymbol('.', 1, new Vector3(-1.8f + (position * 0.4f + 0.1f) , 0.203f, 0), new Vector3(0.4f, 1, 0.05f));
                 position = position > 3? position - 1 : position - 0.5f;
             } else if(symbols[i] == 'f') {
-                //while f then everything is stil in the fraction. / == divider - determines over or under dividerline 
+                //while f then everything is stil in the fraction. - == divider - determines over or under dividerline 
                 //needs to center if either two or more numbers over or under dividerline
                 //then everything is fraction until next  f.
-                //overline -1.73,0.1,0
-                //line 1.8, -0.49, 0
-                //under -1.73, -0.8,0
                 bool overline = true;
+                i++;
+                AddSymbol('-', 1, new Vector3(-1.8f + (position * 0.6f), -0.49f, 0), new Vector3(0.8f, 0.8f, 0.05f));
                 while(symbols[i] != 'f') {
-                    if(overline) {
-                        
+                    if(symbols[i] == '-') {
+                        overline = false;
+                        i++;
+                    }
+                    else if(overline) {
+                        AddSymbol(symbols[i], 1, new Vector3(-1.8f + (position * 0.6f + 0.07f), 0.1f, 0), new Vector3(0.6f, 0.6f, 0.05f));
+                        i++;
+                    } else {
+                        AddSymbol(symbols[i], 1, new Vector3(-1.8f + (position * 0.6f + 0.07f), -0.8f, 0), new Vector3(0.6f, 0.6f, 0.05f));
+                        i++;
                     }
                 }
+                position++;
             } else {
                 AddSymbol(symbols[i], 1, new Vector3(-1.8f + (position * 0.6f), -0.4f, 0), new Vector3(0.8f, 0.8f, 0.05f));
                 position++;

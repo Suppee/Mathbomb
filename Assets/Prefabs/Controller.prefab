@@ -30,7 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7847573128914338580}
   - {fileID: 2240509059346426065}
@@ -124,6 +124,74 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5827119901591416180}
     m_Modifications:
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[0]
+      value: 6LOCKED
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[1]
+      value: POTENS
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[5]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[0]
+      value: 6^3*4^0=
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[1]
+      value: 87/3=
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[2]
+      value: 4*60%=
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[3]
+      value: 4-9=
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[4]
+      value: 12+5=
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[5]
+      value: 5^2*78%=
+      objectReference: {fileID: 0}
     - target: {fileID: 5338438212428815038, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -190,6 +258,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5827119901591416180}
     m_Modifications:
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[0]
+      value: 6LOCKED
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[0]
+      value: fC-Df/fB-Af=
+      objectReference: {fileID: 0}
     - target: {fileID: 7213695492441647211, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -252,6 +336,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5827119901591416180}
     m_Modifications:
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[0]
+      value: 6LOCKED
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[0]
+      value: D+E=
+      objectReference: {fileID: 0}
     - target: {fileID: 7213695492441647211, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -314,6 +414,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5827119901591416180}
     m_Modifications:
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[0]
+      value: 6LOCKED
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[0]
+      value: E+F=
+      objectReference: {fileID: 0}
     - target: {fileID: 7213695492441647211, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -376,6 +492,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5827119901591416180}
     m_Modifications:
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[0]
+      value: 6LOCKED
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[1]
+      value: SQUAREROOT
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: answers.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[0]
+      value: \2^2*2^2\=
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[1]
+      value: \2^2\*2=
+      objectReference: {fileID: 0}
     - target: {fileID: 7213695492441647211, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -438,6 +590,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5827119901591416180}
     m_Modifications:
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: header.Array.data[0]
+      value: 6LOCKED
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 63562905340812228, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
+      propertyPath: questions.Array.data[0]
+      value: 2/2=
+      objectReference: {fileID: 0}
     - target: {fileID: 7213695492441647211, guid: e326dc8ee92123c4fa30671487bdb416, type: 3}
       propertyPath: m_RootOrder
       value: 1

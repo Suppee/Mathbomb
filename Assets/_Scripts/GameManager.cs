@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour {
    private GameObject wonText = null; 
    private GameObject lostText = null; 
    private GameObject startText = null; 
-   [SerializeField] int questionsAmount = 9;
    [SerializeField] public Question[] Questions = new Question[9];
+   public GameObject[] symbols = new GameObject[18];
    [SerializeField] private Clock clock = null;
    [SerializeField] public Strikes strikes = null;
    public int correctAnswered = 0;
@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
         } else if(Instance != this) {
             Destroy(this);
         }
+        
 
        /* questionsParent = GameObject.Find("Questions");
         answersParent = GameObject.Find("Answers");

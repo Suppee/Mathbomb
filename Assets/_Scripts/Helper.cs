@@ -153,6 +153,9 @@ public static class Helper {
             case '.':
                 num = 45;
                 break;
+            case '\\':
+                num = 46;
+                break;
             default:
                 break;
         }

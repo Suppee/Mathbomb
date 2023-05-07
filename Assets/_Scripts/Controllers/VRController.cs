@@ -10,7 +10,7 @@ public class VRController : MonoBehaviour {
     private int lastIndex;
 
     public void SetRotation(Quaternion _q) {
-        this.gameObject.transform.rotation = _q;
+        this.gameObject.transform.localRotation = _q;
         SideFacingPlayer();
     }
     public void SetPosition(Vector3 _pos) => this.gameObject.transform.position = _pos;

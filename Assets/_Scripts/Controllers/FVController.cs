@@ -8,6 +8,7 @@ public class FVController : MonoBehaviour {
         if(GameManager.Instance.selectedQuestion == null || GameManager.Instance.selectedQuestion.SideCompleted)
             return;
         Question q = GameManager.Instance.selectedQuestion;
+        Debug.Log(_response);
         switch (_response) {
             /*case "s":
                 if(sb.Length > 0 && sb[0] == '-') sb.Remove(0, 1);
@@ -30,6 +31,8 @@ public class FVController : MonoBehaviour {
                 sb.Length = 0;
                 q.RemoveAllSymbols(2);
                 break;
+            case "N":
+                break;
             default:
                 if(sb.Length < 6) {
                     sb.Append(_response);
@@ -37,6 +40,7 @@ public class FVController : MonoBehaviour {
                 }
                 break;
         }
+        Debug.Log(_response);
         q.SetAnswerText(sb.ToString());
     }
 }

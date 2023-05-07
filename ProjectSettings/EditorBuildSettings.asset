@@ -6,10 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.19.0/Hello Cardboard/Scenes/Solar.unity
-    guid: be57af252fcdf534ea730f90ed374505
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Bomb.unity
     guid: 809f04bf53bced949807544b4a847665
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 534072d51c063aa46a3487352f6ced55
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: e7f92be1f10017c438a40160361cfb6f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f03e75fbfe85d63418cadd387e51d83d, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 23b579ab6ef261a42b1881c1466a116c, type: 2}

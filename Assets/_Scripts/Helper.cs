@@ -150,11 +150,14 @@ public static class Helper {
             case 'Z':
                 num = 44;
                 break;
-            case '.':
+            case 'Ø':
                 num = 45;
                 break;
-            case '\\':
+            case '.':
                 num = 46;
+                break;
+            case '\\':
+                num = 47;
                 break;
             default:
                 break;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoolHandler : PoolBase<Symbol> {
     public static PoolHandler Instance; 
     [SerializeField] private Symbol Symbol;
-    [SerializeField] private int amount = 45;
+    [SerializeField] private int amount = 48;
 
     private void Awake() {
         if(Instance == null) {

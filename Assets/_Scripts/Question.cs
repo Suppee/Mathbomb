@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Question : MonoBehaviour {
     private bool selected;
@@ -8,6 +9,7 @@ public class Question : MonoBehaviour {
     [SerializeField] private string[] header;
     [SerializeField] private string[] questions; //First questions unlocks side
     [SerializeField] private string[] answers;
+    [SerializeField] private TextMesh answer;
     public string AnswerText {get; private set;}
     private List<Symbol> headerSymbols = new List<Symbol>();
     private List<Symbol> questionSymbols = new List<Symbol>();
@@ -20,8 +22,13 @@ public class Question : MonoBehaviour {
 
     private void SpawnHeader(string _header) {
         char[] symbols = _header.ToCharArray();
+        float position = 0;
         for (int i = 0; i < symbols.Length; i++) {
-                AddSymbol(symbols[i], 0, new Vector3(-1.75f + (headerSymbols.Count * 0.3f), 1.45f, 0), new Vector3(0.4f, 0.4f, 0.05f));  
+            if(position == 2 && CurrentQuestion != 0) {
+                position += 0.5f;
+            }
+            AddSymbol(symbols[i], 0, new Vector3(-1.75f + (position * 0.3f), 1.45f, 0), new Vector3(0.4f, 0.4f, 0.05f));  
+            position++;
         }
     }
 
@@ -83,7 +90,7 @@ public class Question : MonoBehaviour {
 
     public void SpawnAmountSymbols() {
         for (int i = 0; i < questions.Length - 1; i++) {
-            AddSymbol('.', 3, new Vector3(1.55f, 1.45f - (i * 0.3f), 0), new Vector3(1, 1, 0.05f));  
+            AddSymbol('.', 3, new Vector3(1.55f, 1.1f - (i * 0.3f), 0), new Vector3(1, 1, 0.05f));  
         }
     }
 
@@ -144,11 +151,17 @@ public class Question : MonoBehaviour {
         if(CurrentQuestion == 1) {
             RemoveAllSymbols(0);
             SpawnHeader(header[1]);
+            answer.text = header[1] + '\n';
+            FormatText();
         }
         else if(CurrentQuestion == questions.Length) {
             SetSideCompleted(true);
             Debug.Log("Completed Side");
             return;
+        }
+
+        if(CurrentQuestion != 1) {
+            FormatText();
         }
         SpawnQuestion(questions[CurrentQuestion]);
     }
@@ -159,6 +172,12 @@ public class Question : MonoBehaviour {
         } else {
             return false;
         }
+    }
+
+    private void FormatText() {
+        int lastQuestion = CurrentQuestion - 1; 
+        answer.text += lastQuestion + 1 + ". " + answers[lastQuestion] + '\n';
+                        
     }
 
     private void Selected(Question _selected) {

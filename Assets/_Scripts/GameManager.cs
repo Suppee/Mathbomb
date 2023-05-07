@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour {
    public GameObject[] symbols = new GameObject[18];
    [SerializeField] private Clock clock = null;
    [SerializeField] public Strikes strikes = null;
-   public int correctAnswered = 0;
    private bool playing = false;
 
    private void Awake() {
@@ -30,30 +29,21 @@ public class GameManager : MonoBehaviour {
         wonText = GameObject.Find("Won");
         lostText = GameObject.Find("Lost");
         startText = GameObject.Find("Start");
-        
+        */
         clock = GameObject.Find("Clock").GetComponent<Clock>();
-        strikes = GameObject.Find("Strikes").GetComponent<Strikes>();*/
+        strikes = GameObject.Find("Strikes").GetComponent<Strikes>();
     }
 
-   /* private void Start() {
-        for (int i = 0; i < questionsAmount; i++) {
-            Questions[i] = questionsParent.transform.GetChild(i).GetComponent<Question>();
-            Questions[i].AnswerText = answersParent.transform.GetChild(i).GetComponent<TextMesh>();
-        } foreach (Question que in Questions) {
-            que.SetAnswered("");
-            que.SetCorrect(false);
-        }
-        wonText.SetActive(false);
-        lostText.SetActive(false);
-        SetGameState(GameState.play);
-    }*/
+    private void Start() {
+        clock.SetClockLenght(300f);   
+        clock.SetClockActive(true); 
+    }
 
     private void StartGame() {
         questionsParent.SetActive(false);
         answersParent.SetActive(false);
         startText.SetActive(true);
         playing = false;
-        correctAnswered = 0;
     }
     
     private void PlayGame() {

@@ -8,14 +8,18 @@ public class FVController : MonoBehaviour {
         if(GameManager.Instance.selectedQuestion == null || GameManager.Instance.selectedQuestion.SideCompleted)
             return;
         Question q = GameManager.Instance.selectedQuestion;
-        Debug.Log(_response);
         switch (_response) {
             /*case "s":
                 if(sb.Length > 0 && sb[0] == '-') sb.Remove(0, 1);
                 else sb.Insert(0, '-');
                 break;*/
             case "=":
+                if(!GameManager.Instance.Playing) {
+                    GameManager.Instance.SetGameState(GameState.play);
+                    return;
+                }
                 if(!q.CheckAnswer()) {
+                    GameManager.Instance.strikes.SetStrikesAmount(GameManager.Instance.strikes.StrikesAmount + 1);
                     break;
                 }
                 sb.Length = 0;
@@ -40,7 +44,6 @@ public class FVController : MonoBehaviour {
                 }
                 break;
         }
-        Debug.Log(_response);
         q.SetAnswerText(sb.ToString());
     }
 }

@@ -4,8 +4,6 @@ public class GameManager : MonoBehaviour {
    public static GameManager Instance = null; 
    public Question selectedQuestion {get; private set;}
    private const string SERVER_URL = "http://172.20.10.4/";
-   private GameObject questionsParent = null; 
-   private GameObject answersParent = null; 
    private GameObject wonText = null; 
    private GameObject lostText = null; 
    private GameObject startText = null; 
@@ -13,7 +11,7 @@ public class GameManager : MonoBehaviour {
    public GameObject[] symbols = new GameObject[18];
    [SerializeField] private Clock clock = null;
    [SerializeField] public Strikes strikes = null;
-   private bool playing = false;
+   public bool Playing {get; private set;}
 
    private void Awake() {
         if(Instance == null) {
@@ -23,37 +21,45 @@ public class GameManager : MonoBehaviour {
             Destroy(this);
         }
         
-
-       /* questionsParent = GameObject.Find("Questions");
-        answersParent = GameObject.Find("Answers");
-        wonText = GameObject.Find("Won");
-        lostText = GameObject.Find("Lost");
-        startText = GameObject.Find("Start");
-        */
+        wonText = GameObject.Find("WonText");
+        lostText = GameObject.Find("LostText");
+        startText = GameObject.Find("StartText");
         clock = GameObject.Find("Clock").GetComponent<Clock>();
         strikes = GameObject.Find("Strikes").GetComponent<Strikes>();
     }
 
-    private void Start() {
-        clock.SetClockLenght(300f);   
-        clock.SetClockActive(true); 
-    }
-
-    private void StartGame() {
-        questionsParent.SetActive(false);
-        answersParent.SetActive(false);
+    private void Start() => SetGameState(GameState.start);
+    
+    private void StartScene() {
+        Playing = false;
         startText.SetActive(true);
-        playing = false;
+        wonText.SetActive(false);
+        lostText.SetActive(false);
     }
     
-    private void PlayGame() {
-        playing = true;
+    private void PlayGame() { 
+        Playing = true;
         startText.SetActive(false);
-        questionsParent.SetActive(true);
-        answersParent.SetActive(true);
-        clock.SetClockLenght(300f);
+        wonText.SetActive(false);
+        lostText.SetActive(false);
+        clock.SetClockLenght(300f);  
+        strikes.SetStrikesAmount(0); 
         clock.SetClockActive(true);
-        strikes.SetStrikesAmount(0);
+        ShowAllAnswers(true);
+    }
+
+    private void WonGame() {
+        Playing = false;
+        clock.SetClockActive(false);
+        ShowAllAnswers(false);
+        wonText.SetActive(true);
+    }
+
+    private void LostGame() {
+        Playing = false;
+        clock.SetClockActive(false);
+        ShowAllAnswers(false);
+        lostText.SetActive(true);
     }
 
     public void SetGameState(GameState _gameState) {
@@ -64,32 +70,29 @@ public class GameManager : MonoBehaviour {
                 strikes.SetStrikesAmount(0);
                 break;
             case GameState.start:
-                StartGame();
+                StartScene();
                 break;
             case GameState.settings:
                 break;
             case GameState.play:
                 PlayGame();
                 break;
-            case GameState.lost:
-                clock.SetClockActive(false);
-                questionsParent.SetActive(false);
-                answersParent.SetActive(false);
-                lostText.SetActive(true);
-                playing = false;
-                break;
             case GameState.won:
-                clock.SetClockActive(false);
-                questionsParent.SetActive(false);
-                answersParent.SetActive(false);
-                wonText.SetActive(true);
-                playing = false;
+                WonGame();
+                break;
+            case GameState.lost:
+                LostGame();
                 break;
             default:
                 break;
         }
     }
 
+    private void ShowAllAnswers(bool _state) {
+        foreach (Question _q in Questions) {
+            _q.ShowAnswers(_state);
+        }
+    }
     public void SetSelectedQuestion(Question q) => this.selectedQuestion = q;
 }
 

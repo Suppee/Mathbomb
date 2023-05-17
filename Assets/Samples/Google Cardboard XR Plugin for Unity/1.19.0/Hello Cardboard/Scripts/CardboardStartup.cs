@@ -47,20 +47,20 @@ public class CardboardStartup : MonoBehaviour
     /// </summary>
     public void Update()
     {
-        if (Api.IsGearButtonPressed)
+        /*if (Api.IsGearButtonPressed)
         {
             Api.ScanDeviceParams();
-        }
+        }*/
 
         if (Api.IsCloseButtonPressed)
         {
             Application.Quit();
         }
 
-        if (Api.IsTriggerHeldPressed)
+        /*if (Api.IsTriggerHeldPressed)
         {
             Api.Recenter();
-        }
+        }*/
 
         if (Api.HasNewDeviceParams())
         {

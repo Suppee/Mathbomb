@@ -1,20 +1,16 @@
 using System.Globalization;
 using UnityEngine;
 //using KyleDulce.SocketIo;
-using System.IO.Ports;
-using SocketIOClient;
-using System;
-using System.Collections.Generic;
+//using System.IO.Ports;
 
 
-public class DataReceiver : MonoBehaviour {
+public class DataReceiver : Data {
 
     [SerializeField] private VRController vr;
     [SerializeField] private FVController fv;
     //[SerializeField] private bool wifi = true;
     //private bool runLocal = true;
     //private Socket socket;
-    private SocketIOUnity socket;
     //private SerialPort bno055 = new SerialPort("COM7", 115200);
     //private SerialPort keyPad = new SerialPort("COM14", 9600);
     private float w, x, y, z = 0;
@@ -43,16 +39,16 @@ public class DataReceiver : MonoBehaviour {
             }*/
             string[] values = data.Split(',');
             
-            w = float.Parse(values[2], CultureInfo.InvariantCulture.NumberFormat);
-            x = float.Parse(values[3], CultureInfo.InvariantCulture.NumberFormat);
-            y = float.Parse(values[1], CultureInfo.InvariantCulture.NumberFormat);
-            z = float.Parse(values[0], CultureInfo.InvariantCulture.NumberFormat);
+            w = float.Parse(values[3], CultureInfo.InvariantCulture.NumberFormat);
+            x = float.Parse(values[1], CultureInfo.InvariantCulture.NumberFormat);
+            y = float.Parse(values[0], CultureInfo.InvariantCulture.NumberFormat);
+            z = float.Parse(values[2], CultureInfo.InvariantCulture.NumberFormat);
 
             //xAcc = float.Parse(values[4], CultureInfo.InvariantCulture.NumberFormat);
             //yAcc = float.Parse(values[5], CultureInfo.InvariantCulture.NumberFormat);
             //zAcc = float.Parse(values[6], CultureInfo.InvariantCulture.NumberFormat);
         
-            Quaternion q = new Quaternion(-w,-x,y,z).normalized;
+            Quaternion q = new Quaternion(-w,-x,y,-z).normalized;
             vr.SetRotation(q);
         //} catch (System.Exception) { 
         //        Debug.Log("timeout"); 
@@ -60,36 +56,9 @@ public class DataReceiver : MonoBehaviour {
     }
 
     private void Start() {
-        var uri = new Uri("http://172.20.10.2:3000/");
-        socket = new SocketIOUnity(uri, new SocketIOOptions{
-            Query = new Dictionary<string, string>
-                {
-                    {"token", "UNITY" }
-                }
-            ,
-            EIO = 4
-            ,
-            Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
-        });
-        ///// reserved socketio events
-        socket.OnConnected += (sender, e) => {
-            Debug.Log("socket.OnConnected");
-        };
-        socket.OnPing += (sender, e) => {
-            Debug.Log("Ping");
-        };
-        socket.OnPong += (sender, e) => {
-            Debug.Log("Pong: " + e.TotalMilliseconds);
-        };
-        socket.OnDisconnected += (sender, e) => {
-            Debug.Log("disconnect: " + e);
-        };
-        socket.OnReconnectAttempt += (sender, e) => {
-            Debug.Log($"{DateTime.Now} Reconnecting: attempt = {e}");
-        };
-
-        Debug.Log("Connecting...");
-        socket.Connect();
+        Setup();
+        Events();
+        Connection();
 
         //On "CurrentBNO055Value"
         socket.On("CurrentBNO055Value", (response) => {

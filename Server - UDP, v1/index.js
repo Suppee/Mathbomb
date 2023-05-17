@@ -8,7 +8,6 @@ app.use(express.static(path.join(__dirname, '')));
 //server variables
 var currentBNO055Value = 0;
 var currentKeyPadValue = 0;
-var currentLEDValue = 0;
 
 //start server
 server.listen(3000, function () {
@@ -20,10 +19,6 @@ app.get('/', function (req, res) {
     //send index.html to client browser
     res.sendFile(__dirname + '/index.html');
 });
-
-
-
-
 
 // ------------------------------ Find and print the server IP-address ------------------------------ 
 var networkInterfaces = require('os').networkInterfaces();
@@ -38,10 +33,6 @@ Object.keys(networkInterfaces).forEach(function(interface) {
 });
 
 console.log("Server IP-address: " + address + "\n");
-
-
-
-
 
 // ------------------------------ setup UDP (user datagram protocol) ------------------------------ 
 var UPD = require("dgram");
@@ -69,33 +60,19 @@ UDPsocket.on('listening', function () {
 UDPsocket.on('message', (msg, senderInfo) => {
     console.log("Received UDP message: " + msg);
     console.log("From addr: " + senderInfo.address + ", at port: " + senderInfo.port + "\n");
+    var message = msg.toString()
 
-    if (senderInfo.port === 3002) {
-        currentBNO055Value = msg.toString()
+    if (message.length > 10) {
+        currentBNO055Value = message
         EmitBNO055Value();
     } else {
-        currentKeyPadValue = msg.toString()
+        currentKeyPadValue = message
         EmitKeyPadValue();
     }
 
     picoIPAddress = senderInfo.address;
     picoPort = senderInfo.port;
-
-    //send acknowledgement message
-    //sendUDPMessage(arduinoIPAddress, arduinoPort, "SERVER: The message was received");
 });
-
-//send UDP message
-function sendUDPMessage(receiverIPAddress, receiverPort, message) {
-    var UDPMessage = Buffer.from(message);
-    UDPsocket.send(UDPMessage, receiverPort, receiverIPAddress, function (error) {
-        if (error) {
-            client.close();
-        } else {
-            console.log('UDP message sent: ' + message + "\n");
-        }
-    });
-}
 
 // ------------------------------ setup Socket.IO ------------------------------ 
 var io = require('socket.io')(server);
@@ -108,18 +85,17 @@ io.on('connection', function(IOsocket) {
     IOsocket.on('disconnect', function () {
         console.log("Client has disconnected" + "\n");
     });
+    //on "UpdateCurrentKeyPadValue"
+    IOsocket.on('UpdateKeyPadValue', function (data) {
+        console.log("Current KeyPad Value received from client: " + data + "\n");
+        currentKeyPadValue = data;
 
-    //on "UpdateCurrentLEDValue"
-    IOsocket.on('UpdateCurrentLEDValue', function (data) {
-        console.log("Current LED Value received from client: " + data + "\n");
-        currentLEDValue = data;
-
-        io.emit('CurrentLEDValue', currentLEDValue);
+        io.emit('CurrentKeyPadValue', currentKeyPadValue);
 
         //If arduino, send LED value with UDP
-        if (picoIPAddress != null && picoPort != null) {
-            sendUDPMessage(picoIPAddress, picoPort, currentLEDValue)
-        }
+        //if (arduinoIPAddress != null && arduinoPort != null) {
+        //    sendUDPMessage(arduinoIPAddress, arduinoPort, currentKeyPadValue)
+        //}
     });
 });
 

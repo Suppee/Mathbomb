@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Question : MonoBehaviour {
     private bool selected;
-    public bool Unlocked {get; private set;} 
     public int CurrentQuestion {get; private set;}
     [SerializeField] private string[] header;
     [SerializeField] private string[] questions; //First questions unlocks side
@@ -15,7 +14,6 @@ public class Question : MonoBehaviour {
     private List<Symbol> questionSymbols = new List<Symbol>();
     private List<Symbol> answerSymbols = new List<Symbol>();
     public bool SideCompleted {get; private set;}
-    public void SetUnlocked(bool _unlocked) => this.Unlocked = _unlocked;
     public void SetCurrentQuestion(int _current) => this.CurrentQuestion = _current;
     public void SetAnswerText(string _text) => this.AnswerText = _text;
     public void SetSideCompleted(bool _complete) => this.SideCompleted = _complete;
@@ -108,7 +106,7 @@ public class Question : MonoBehaviour {
                 answerSymbols.Add(symbol);
                 break;
             default:
-                break;
+                return;
         }
         symbol.transform.parent = this.transform;
         symbol.transform.localPosition = _pos;
@@ -136,12 +134,16 @@ public class Question : MonoBehaviour {
                 list = answerSymbols;
                 break;
             default:
-                break;
+                return;
         }
         for (int i = 0; i < list.Count; i++) {
             PoolHandler.Instance.Release(list[i], list[i].Number);
         }
         list.Clear();
+    }
+
+    public void ShowAnswers(bool _state) {
+        answer.gameObject.SetActive(_state);
     }
 
     public void NextQuestion() {
@@ -191,6 +193,7 @@ public class Question : MonoBehaviour {
         SpawnQuestion(questions[0]);
         SpawnAmountSymbols();
         SetCurrentQuestion(0);
+        ShowAnswers(false);
     }
 
     private void OnEnable() => VRController.Select += Selected;

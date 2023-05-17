@@ -7,12 +7,6 @@
 	<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
 </head>
 <body>
-	<!--Current LED and Potentiometer values, and set new LED value-->
-	<p>
-		Current LED value (<output name="" type="text" id="CurrentLEDValueField" value"readonly"></output>), new LED value:
-		<input id="newLEDValueField" type="text" onchange="UpdateLEDValue(this.value);">
-	</p>
-
 	<p>
 		Current BNO055 value (<output name="" type="text" id="CurrentBNO055ValueField" value"readonly"></output>)
 	</p>
@@ -26,8 +20,7 @@
 <script>
 	//Local variables
 	var socket;
-	var runLocal = true;
-	var currentLEDValue = 0;
+	var runLocal = false;
 
 	//Connect to server
 	if (runLocal) {
@@ -42,12 +35,6 @@
 		console.log("Connected to server");
 	});
 
-	//On "CurrentLEDValue"
-	socket.on("CurrentLEDValue", function (data) {
-        console.log("Current LED value received from server : " + data);
-		document.getElementById("CurrentLEDValueField").value = data;
-	});
-
 	//On "CurrentBNO055Value"
     socket.on("CurrentBNO055Value", function (data) {
         console.log("Current BNO055 value received from server: " + data);
@@ -60,9 +47,8 @@
         document.getElementById("CurrentKeyPadValueField").value = data;
     });
 
-	//----------------- SOCKET IO - EMIT UPDATES
-    function UpdateLEDValue(newLEDValue) {
-		console.log("New LED value emitted to server: " + newLEDValue);
-        socket.emit("UpdateCurrentLEDValue", newLEDValue);
+	function UpdateKeyPadValue(newKeyPadValue) {
+		console.log("New LED value emitted to server: " + newKeyPadValue);
+        socket.emit("UpdateCurrentLEDValue", newKeyPadValue);
 	}
 </script>

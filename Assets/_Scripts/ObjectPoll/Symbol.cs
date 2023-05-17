@@ -48,7 +48,7 @@ public class Symbol : MonoBehaviour {
                 posOffset = new Vector3(-0.22f, 0, 0);
                 scaleOffset = new Vector3(1, 1, 1);
                 break;
-            case 18:
+            case 18: //=
                 posOffset = new Vector3(-0.03f, 0.35f, 0);
                 scaleOffset = new Vector3(0.8f, 0.8f, 1);  
                 break;

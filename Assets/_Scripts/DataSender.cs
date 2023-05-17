@@ -15,10 +15,10 @@ public class DataSender : Data {
         }
     }
     private void Start() {
-        ChangeConnectionColor(lightRed);
         Setup();
         Events();
         Connection(); 
+        //ChangeConnectionColor(lightGreen);
     }
 
     private void SocketEmit(int i) {
@@ -29,7 +29,6 @@ public class DataSender : Data {
         ///// reserved socketio events
         socket.OnConnected += (sender, e) => {
             Debug.Log("socket.OnConnected");
-            ChangeConnectionColor(lightGreen);  
         };
         socket.OnPing += (sender, e) => {
             Debug.Log("Ping");
@@ -38,13 +37,14 @@ public class DataSender : Data {
             Debug.Log("Pong: " + e.TotalMilliseconds);
         };
         socket.OnDisconnected += (sender, e) => {
-            Debug.Log("Disconnect: " + e);
-            ChangeConnectionColor(lightRed);
-            
+            Debug.Log("Disconnect: " + e);            
         };
         socket.OnReconnectAttempt += (sender, e) => {
             //Debug.Log($"{DateTime.Now} Reconnecting: attempt = {e}");
         };
+
+        socket.OnConnected += (sender, e) => ChangeConnectionColor(lightGreen);
+        socket.OnDisconnected += (sender, e) => ChangeConnectionColor(lightRed);
     }
 
     private void ChangeConnectionColor(Color _color) => this.connection.color = _color;

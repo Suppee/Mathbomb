@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DataSender : Data {
     private static Color lightGreen = new Color(0,1,0,0.75f);

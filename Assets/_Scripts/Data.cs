@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SocketIOClient;
+using SocketIOClient.Newtonsoft.Json;
 
 public abstract class Data : MonoBehaviour {
     protected static SocketIOUnity socket;
     protected static void Setup() {
-        var uri = new Uri("http://34.88.223.86:3000/");
+        var uri = new Uri("http://35.228.248.159:3000/");
         socket = new SocketIOUnity(uri, new SocketIOOptions{
             Query = new Dictionary<string, string>
                 {
@@ -17,6 +18,8 @@ public abstract class Data : MonoBehaviour {
             ,
             Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
         });
+
+        socket.JsonSerializer = new NewtonsoftJsonSerializer();
     }
 
     protected virtual void Events() {
